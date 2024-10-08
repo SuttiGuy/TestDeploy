@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: h2o-project  # ชื่อของบริการที่ต้องการตั้งค่า
+    env: node
+    plan: free  # แผนการใช้งานของ Render (free, starter, standard, ฯลฯ)
+    buildCommand: npm install && npm run build  # คำสั่งในการ build โปรเจกต์
+    startCommand: npm run start:prod  # คำสั่งในการรันแอปพลิเคชันใน production
+    rootDir: Server

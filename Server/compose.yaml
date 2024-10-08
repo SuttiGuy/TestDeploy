@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+
+  server:
+    build:
+      context: .
+      dockerfile: Server/Dockerfile
+    environment:
+      NODE_ENV: production
+      MONGODB_URL: ${MONGODB_URL} # ใช้ตัวแปรจาก .env
+    ports:
+      - 3001:3000
+    depends_on:
+      - mongo
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+volumes:
+  mongo_data:
